@@ -1,0 +1,84 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+const form = document.getElementById("leadForm");
+const message = document.getElementById("message");
+
+if(form){
+
+form.addEventListener("submit", async (e) => {
+
+e.preventDefault();
+
+const name = form.querySelector('input[type="text"]').value.trim();
+const email = form.querySelector('input[type="email"]').value.trim();
+const mobile = form.querySelector('input[type="tel"]').value.trim();
+const insurance = form.querySelector("select").value;
+
+if(name.length < 3){
+alert("Please enter your full name.");
+return;
+}
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(!emailPattern.test(email)){
+alert("Please enter a valid email.");
+return;
+}
+
+if(!/^[6-9]\d{9}$/.test(mobile)){
+alert("Please enter a valid 10-digit mobile number.");
+return;
+}
+
+if(insurance === ""){
+alert("Please select an insurance plan.");
+return;
+}
+
+try{
+
+const response = await fetch("/lead/create",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+name,
+email,
+mobile,
+insuranceType:insurance
+})
+});
+
+const data = await response.json();
+
+if(response.ok){
+message.innerHTML = "✅ Lead saved successfully. We will contact you soon.";
+form.reset();
+}else{
+message.innerHTML = "❌ " + data.error;
+}
+
+}catch(err){
+message.innerHTML = "❌ Server connection failed.";
+}
+
+});
+
+}
+
+const links = document.querySelectorAll("nav a");
+
+links.forEach(link => {
+
+link.addEventListener("click", () => {
+
+links.forEach(item => item.classList.remove("active"));
+link.classList.add("active");
+
+});
+
+});
+
+});

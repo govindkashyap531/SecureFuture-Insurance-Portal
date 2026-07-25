@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register - SecureFuture Insurance</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="login-box">
+
+<h2>📝 Create Account</h2>
+
+<p>Join SecureFuture Insurance</p>
+
+<form id="registerForm">
+
+<input type="text" id="name" placeholder="Full Name" required>
+
+<input type="email" id="email" placeholder="Email Address" required>
+
+<input type="tel" id="mobile" placeholder="Mobile Number" required>
+
+<input type="password" id="password" placeholder="Password" required>
+
+<input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+<label>
+<input type="checkbox" id="showPassword">
+ Show Password
+</label>
+
+<button type="submit">Create Account</button>
+
+<p class="link">
+Already have an account?
+<a href="login.html">Login</a>
+</p>
+
+<p class="link">
+<a href="index.html">⬅ Back to Home</a>
+</p>
+
+</form>
+
+</div>
+
+</div>
+
+<script>
+const password=document.getElementById("password");
+const confirm=document.getElementById("confirmPassword");
+const check=document.getElementById("showPassword");
+
+check.addEventListener("change",()=>{
+password.type=check.checked?"text":"password";
+confirm.type=check.checked?"text":"password";
+});
+
+document.getElementById("registerForm").addEventListener("submit",(e)=>{
+e.preventDefault();
+
+if(password.value!==confirm.value){
+alert("Passwords do not match.");
+return;
+}
+
+alert("Registration form is ready. Backend connection will be added next.");
+});
+</script>
+
+</body>
+</html>

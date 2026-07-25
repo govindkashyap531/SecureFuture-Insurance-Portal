@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecureFuture Admin Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+margin:0;
+}
+
+.navbar{
+background:#0d6efd;
+color:#fff;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.dashboard{
+padding:30px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:30px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.card h2{
+font-size:35px;
+color:#0d6efd;
+margin:0;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:#fff;
+}
+
+table th,table td{
+padding:12px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+table th{
+background:#0d6efd;
+color:#fff;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+<h2>SecureFuture Admin</h2>
+<a href="index.html" style="color:white;text-decoration:none;">Home</a>
+</div>
+
+<div class="dashboard">
+
+<div class="cards">
+
+<div class="card">
+<h2 id="users">0</h2>
+<p>Total Users</p>
+</div>
+
+<div class="card">
+<h2 id="policies">0</h2>
+<p>Total Policies</p>
+</div>
+
+<div class="card">
+<h2 id="leads">0</h2>
+<p>Total Leads</p>
+</div>
+
+</div>
+
+<h2>Recent Leads</h2>
+
+<input
+id="search"
+type="text"
+placeholder="Search by Name or Mobile..."
+onkeyup="searchLead()"
+style="width:100%;padding:10px;margin:15px 0;border:1px solid #ccc;border-radius:5px;">
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Mobile</th>
+<th>Email</th>
+<th>Insurance</th>
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody id="leadTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+fetch("/admin/stats")
+.then(res=>res.json())
+.then(data=>{
+
+document.getElementById("users").innerHTML=data.users;
+document.getElementById("policies").innerHTML=data.policies;
+document.getElementById("leads").innerHTML=data.leads;
+
+});
+
+fetch("/lead/all")
+.then(res=>res.json())
+.then(data=>{
+
+let html="";
+
+data.forEach(lead=>{
+
+html+=`
+<tr>
+<td>${lead.name}</td>
+<td>${lead.mobile}</td>
+<td>${lead.email}</td>
+<td>${lead.insuranceType}</td>
+<td>${new Date(lead.createdAt).toLocaleDateString()}</td>
+</tr>
+`;
+
+});
+
+document.getElementById("leadTable").innerHTML=html;
+
+
+});
+
+function searchLead(){
+
+let input=document.getElementById("search").value.toLowerCase();
+
+let rows=document.querySelectorAll("#leadTable tr");
+
+rows.forEach(row=>{
+
+if(row.innerText.toLowerCase().includes(input)){
+row.style.display="";
+}else{
+row.style.display="none";
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
+ĺ

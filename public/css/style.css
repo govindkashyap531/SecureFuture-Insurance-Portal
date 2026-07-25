@@ -1,0 +1,375 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f5f7fb;
+color:#333;
+line-height:1.6;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+.navbar{
+background:#0d6efd;
+padding:18px 0;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.navbar .container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:700;
+color:#fff;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:25px;
+}
+
+nav ul li a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#ffd43b;
+}
+
+.register-btn{
+background:#fff;
+color:#0d6efd!important;
+padding:10px 18px;
+border-radius:30px;
+font-weight:600;
+}
+.hero{
+background:
+linear-gradient(rgba(13,110,253,.85),rgba(13,110,253,.85)),
+url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+color:#fff;
+text-align:center;
+padding:120px 20px;
+}
+
+.hero h1{
+font-size:52px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+max-width:800px;
+margin:0 auto 30px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:#fff;
+color:#0d6efd;
+text-decoration:none;
+font-weight:bold;
+border-radius:40px;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+section{
+padding:70px 0;
+}
+
+section h2{
+text-align:center;
+font-size:38px;
+color:#0d6efd;
+margin-bottom:40px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:#fff;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+text-align:center;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+
+.card h3{
+margin-bottom:15px;
+color:#0d6efd;
+font-size:22px;
+}
+
+.card p{
+color:#666;
+font-size:16px;
+}
+
+#contact{
+background:#0d6efd;
+color:#fff;
+}
+
+#contact h2{
+color:#fff;
+}
+
+#leadForm{
+max-width:650px;
+margin:30px auto;
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+#leadForm input,
+#leadForm select,
+#leadForm textarea{
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:16px;
+outline:none;
+}
+
+#leadForm textarea{
+resize:vertical;
+min-height:120px;
+}
+
+#leadForm button{
+padding:16px;
+background:#fff;
+color:#0d6efd;
+font-size:18px;
+font-weight:600;
+border:none;
+border-radius:30px;
+cursor:pointer;
+transition:.3s;
+}
+
+#leadForm button:hover{
+background:#ffd43b;
+color:#222;
+}
+
+#message{
+text-align:center;
+font-size:18px;
+margin-top:15px;
+color:#fff;
+}
+
+footer{
+background:#072c6b;
+color:#fff;
+text-align:center;
+padding:40px 20px;
+}
+
+footer h3{
+margin-bottom:15px;
+font-size:28px;
+}
+
+footer p{
+margin:8px 0;
+}
+
+@media(max-width:768px){
+
+.navbar .container{
+flex-direction:column;
+}
+
+nav ul{
+flex-direction:column;
+align-items:center;
+margin-top:15px;
+}
+
+nav ul li{
+margin:10px 0;
+}
+
+.hero{
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+section h2{
+font-size:30px;
+}
+
+.btn{
+display:block;
+width:100%;
+max-width:280px;
+margin:auto;
+text-align:center;
+}
+
+}
+/* ===== Login Page ===== */
+
+.login-container{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0d6efd,#4dabf7);
+padding:20px;
+}
+
+.login-box{
+background:#fff;
+width:100%;
+max-width:420px;
+padding:40px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+text-align:center;
+}
+
+.login-box h2{
+color:#0d6efd;
+margin-bottom:10px;
+}
+
+.login-box p{
+margin-bottom:25px;
+color:#666;
+}
+
+.login-box input{
+width:100%;
+padding:14px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+}
+
+.login-box label{
+display:flex;
+align-items:center;
+gap:8px;
+margin:10px 0 20px;
+font-size:14px;
+}
+
+.login-box button{
+width:100%;
+padding:14px;
+background:#0d6efd;
+color:#fff;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+.login-box button:hover{
+background:#0b5ed7;
+}
+
+.link{
+margin-top:15px;
+font-size:15px;
+}
+
+.link a{
+color:#0d6efd;
+text-decoration:none;
+font-weight:600;
+}
+
+.link a:hover{
+text-decoration:underline;
+}
+
+/* Floating Buttons */
+
+.floating-buttons{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    z-index:1000;
+}
+
+.whatsapp-btn,
+.call-btn{
+    text-decoration:none;
+    color:#fff;
+    padding:12px 18px;
+    border-radius:30px;
+    font-weight:600;
+    box-shadow:0 4px 10px rgba(0,0,0,0.25);
+    transition:0.3s;
+}
+
+.whatsapp-btn{
+    background:#25D366;
+}
+
+.call-btn{
+    background:#007BFF;
+}
+
+.whatsapp-btn:hover,
+.call-btn:hover{
+    transform:scale(1.08);
+}
