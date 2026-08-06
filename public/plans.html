@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health Insurance Plans</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏥 Health Insurance Plans</h1>
+<p>Compare plans from India's top insurance companies.</p>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search company or plan..."
+style="width:100%;padding:12px;margin:20px 0;border-radius:8px;"
+>
+
+<div id="plansList"></div>
+
+<hr style="margin:40px 0;">
+
+<h2>💰 Premium Calculator</h2>
+
+<div class="calculator">
+
+<label>Age</label>
+<input type="number" id="age" placeholder="Enter Age">
+
+<label>Coverage Amount</label>
+<select id="coverage">
+<option value="500000">₹5 Lakh</option>
+<option value="1000000">₹10 Lakh</option>
+<option value="2000000">₹20 Lakh</option>
+</select>
+
+<br><br>
+
+<button class="btn" onclick="calculatePremium()">
+Calculate Premium
+</button>
+
+<h3 id="premiumResult"></h3>
+
+</div>
+
+</div>
+
+<script src="js/plans.js"></script>
+
+<script>
+function calculatePremium(){
+
+const age = Number(document.getElementById("age").value);
+const coverage = Number(document.getElementById("coverage").value);
+
+if(!age){
+document.getElementById("premiumResult").innerHTML="Please enter age.";
+return;
+}
+
+let premium = coverage / 1000;
+
+if(age>30) premium*=1.2;
+if(age>40) premium*=1.5;
+if(age>50) premium*=2;
+
+document.getElementById("premiumResult").innerHTML=
+"Estimated Premium : ₹"+Math.round(premium)+"/month";
+
+}
+</script>
+
+</body>
+</html>

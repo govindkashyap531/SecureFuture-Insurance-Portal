@@ -3,28 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SecureFuture Admin Dashboard</title>
 
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-body{
-font-family:Arial,sans-serif;
-background:#f4f7fb;
+
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
-.navbar{
+body{
+background:#eef2f7;
+display:flex;
+}
+
+.sidebar{
+width:250px;
+height:100vh;
 background:#0d6efd;
-color:#fff;
-padding:15px 30px;
+color:white;
+position:fixed;
+left:0;
+top:0;
+padding:20px;
+}
+
+.sidebar h2{
+margin-bottom:30px;
+text-align:center;
+}
+
+.sidebar a{
+display:block;
+color:white;
+text-decoration:none;
+padding:12px;
+border-radius:6px;
+margin:8px 0;
+}
+
+.sidebar a:hover{
+background:rgba(255,255,255,.2);
+}
+
+.main{
+margin-left:250px;
+width:100%;
+}
+
+.header{
+background:white;
+padding:20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
 .dashboard{
-padding:30px;
+padding:25px;
 }
 
 .cards{
@@ -35,8 +77,8 @@ margin-bottom:30px;
 }
 
 .card{
-background:#fff;
-padding:20px;
+background:white;
+padding:25px;
 border-radius:10px;
 box-shadow:0 5px 15px rgba(0,0,0,.1);
 text-align:center;
@@ -45,34 +87,78 @@ text-align:center;
 .card h2{
 font-size:35px;
 color:#0d6efd;
-margin:0;
+}
+
+button{
+background:#0d6efd;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:5px;
+cursor:pointer;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:15px 0;
+border:1px solid #ccc;
+border-radius:5px;
 }
 
 table{
 width:100%;
+background:white;
 border-collapse:collapse;
-background:#fff;
 }
 
-table th,table td{
+th,td{
 padding:12px;
 border:1px solid #ddd;
 text-align:center;
 }
 
-table th{
+th{
 background:#0d6efd;
-color:#fff;
+color:white;
 }
+
 </style>
 
 </head>
 
 <body>
 
-<div class="navbar">
-<h2>SecureFuture Admin</h2>
-<a href="index.html" style="color:white;text-decoration:none;">Home</a>
+<div class="sidebar">
+
+<h2>SecureFuture</h2>
+
+<a href="#">🏠 Dashboard</a>
+
+<a href="#">👥 Users</a>
+
+<a href="#">📋 Leads</a>
+
+<a href="#">📑 Policies</a>
+
+<a href="#">📊 Reports</a>
+
+<a href="#">⚙ Settings</a>
+
+<a href="index.html">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+<div class="header">
+
+<h2>Admin Dashboard</h2>
+
+<div>
+Welcome Admin
+</div>
+
 </div>
 
 <div class="dashboard">
@@ -98,12 +184,14 @@ color:#fff;
 
 <h2>Recent Leads</h2>
 
+<button onclick="exportTable()">📥 Export CSV</button>
+
 <input
 id="search"
 type="text"
-placeholder="Search by Name or Mobile..."
-onkeyup="searchLead()"
-style="width:100%;padding:10px;margin:15px 0;border:1px solid #ccc;border-radius:5px;">
+placeholder="Search Lead..."
+onkeyup="searchLead()">
+
 <table>
 
 <thead>
@@ -111,10 +199,16 @@ style="width:100%;padding:10px;margin:15px 0;border:1px solid #ccc;border-radius
 <tr>
 
 <th>Name</th>
+
 <th>Mobile</th>
+
 <th>Email</th>
+
 <th>Insurance</th>
+
 <th>Date</th>
+
+<th>Action</th>
 
 </tr>
 
@@ -130,31 +224,53 @@ style="width:100%;padding:10px;margin:15px 0;border:1px solid #ccc;border-radius
 
 <script>
 
-fetch("/admin/stats")
+const token = localStorage.getItem("adminToken");
+
+// Dashboard Stats
+fetch("/admin/stats",{
+headers:{
+Authorization:"Bearer "+token
+}
+})
 .then(res=>res.json())
 .then(data=>{
-
-document.getElementById("users").innerHTML=data.users;
-document.getElementById("policies").innerHTML=data.policies;
-document.getElementById("leads").innerHTML=data.leads;
-
+document.getElementById("users").innerText=data.users||0;
+document.getElementById("policies").innerText=data.policies||0;
+document.getElementById("leads").innerText=data.leads||0;
 });
 
+// Load Leads
 fetch("/lead/all")
 .then(res=>res.json())
-.then(data=>{
+.then(leads=>{
 
 let html="";
 
-data.forEach(lead=>{
+leads.forEach(lead=>{
 
 html+=`
 <tr>
+
 <td>${lead.name}</td>
+
 <td>${lead.mobile}</td>
-<td>${lead.email}</td>
-<td>${lead.insuranceType}</td>
+
+<td>${lead.email||""}</td>
+
+<td>${lead.insuranceType||""}</td>
+
 <td>${new Date(lead.createdAt).toLocaleDateString()}</td>
+
+<td>
+
+<button onclick="openWhatsApp('${lead.mobile}')">💬</button>
+
+<button onclick="editLead('${lead._id}')">✏️</button>
+
+<button onclick="deleteLead('${lead._id}')">🗑️</button>
+
+</td>
+
 </tr>
 `;
 
@@ -162,29 +278,93 @@ html+=`
 
 document.getElementById("leadTable").innerHTML=html;
 
-
 });
 
 function searchLead(){
 
-let input=document.getElementById("search").value.toLowerCase();
+let value=document.getElementById("search").value.toLowerCase();
 
-let rows=document.querySelectorAll("#leadTable tr");
+document.querySelectorAll("#leadTable tr").forEach(row=>{
 
-rows.forEach(row=>{
-
-if(row.innerText.toLowerCase().includes(input)){
-row.style.display="";
-}else{
-row.style.display="none";
-}
+row.style.display=row.innerText.toLowerCase().includes(value)?"":"none";
 
 });
 
 }
 
+function exportTable(){
+
+let csv="Name,Mobile,Email,Insurance,Date\n";
+
+document.querySelectorAll("#leadTable tr").forEach(row=>{
+
+const cols=row.querySelectorAll("td");
+
+if(cols.length>=5){
+
+csv+=`${cols[0].innerText},${cols[1].innerText},${cols[2].innerText},${cols[3].innerText},${cols[4].innerText}\n`;
+
+}
+
+});
+
+const blob=new Blob([csv],{type:"text/csv"});
+
+const link=document.createElement("a");
+
+link.href=URL.createObjectURL(blob);
+
+link.download="SecureFuture_Leads.csv";
+
+link.click();
+
+}
+
+function openWhatsApp(mobile){
+
+window.open("https://wa.me/91"+mobile,"_blank");
+
+}
+
+function deleteLead(id){
+
+if(confirm("Delete this lead?")){
+
+fetch("/lead/delete/"+id,{
+method:"DELETE"
+})
+.then(res=>res.json())
+.then(data=>{
+alert(data.message);
+location.reload();
+});
+
+}
+
+}
+
+function editLead(id){
+
+let name=prompt("Enter New Name");
+
+if(!name) return;
+
+fetch("/lead/update/"+id,{
+method:"PUT",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({name:name})
+})
+.then(res=>res.json())
+.then(data=>{
+alert(data.message);
+location.reload();
+});
+
+}
 </script>
 
 </body>
 </html>
-ĺ
+

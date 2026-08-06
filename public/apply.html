@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply for Insurance - SecureFuture Insurance</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    margin:0;
+}
+.container{
+    max-width:700px;
+    margin:30px auto;
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+h2{
+    text-align:center;
+}
+input,select{
+    width:100%;
+    padding:12px;
+    margin:8px 0 15px;
+    box-sizing:border-box;
+}
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:#0d6efd;
+    color:#fff;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+button:hover{
+    background:#0b5ed7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Insurance Application Form</h2>
+
+<form id="uploadForm" enctype="multipart/form-data">
+
+<input type="text" name="name" placeholder="Full Name" required>
+
+<input type="text" name="mobile" placeholder="Mobile Number" required>
+
+<input type="email" name="email" placeholder="Email">
+
+<input type="number" name="age" placeholder="Age">
+
+<input type="text" name="city" placeholder="City">
+
+<select name="insuranceType">
+<option>Life Insurance</option>
+<option>Health Insurance</option>
+<option>Motor Insurance</option>
+<option>Investment Plan</option>
+</select>
+
+<label>Aadhaar Card</label>
+<input type="file" name="aadhaar">
+
+<label>PAN Card</label>
+<input type="file" name="pan">
+
+<label>Passport Size Photo</label>
+<input type="file" name="photo">
+
+<label>Address Proof</label>
+<input type="file" name="addressProof">
+
+<button type="submit">
+Submit Application
+</button>
+
+</form>
+
+</div>
+
+<script>
+document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    const res = await fetch("/upload", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await res.json();
+
+    alert(data.message);
+
+    if (data.success) {
+        e.target.reset();
+    }
+});
+</script>
+</body>
+</html>
+
+

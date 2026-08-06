@@ -1,0 +1,72 @@
+[
+{
+  "company": "Niva Bupa",
+  "plan": "Aspire Gold+",
+  "rating": "4.8",
+  "premium": "₹699/month",
+  "coverage": "Up to ₹1 Crore",
+  "cashless": "10000+ Hospitals",
+  "description": "Comprehensive health insurance with cashless treatment and annual health check-up.",
+  "logo": "niva-bupa.png"
+},
+  {"company":"Niva Bupa","plan":"Aspire Platinum+"},
+  {"company":"Niva Bupa","plan":"Aspire Titanium+"},
+  {"company":"Niva Bupa","plan":"Aspire Diamond+"},
+  {"company":"Niva Bupa","plan":"Rise"},
+  {"company":"Niva Bupa","plan":"Health Companion"},
+  {"company":"Niva Bupa","plan":"Health Recharge"},
+  {"company":"Niva Bupa","plan":"ReAssure"},
+  {"company":"Niva Bupa","plan":"ReAssure 2.0 Bronze+"},
+  {"company":"Niva Bupa","plan":"ReAssure 2.0 Platinum+"},
+  {"company":"Niva Bupa","plan":"ReAssure 2.0 Titanium+"},
+  {"company":"Niva Bupa","plan":"ReAssure 3.0 Classic"},
+
+  {"company":"Star Health","plan":"Super Star Preferred"},
+  {"company":"Star Health","plan":"Super Star Essential"},
+  {"company":"Star Health","plan":"Comprehensive"},
+  {"company":"Star Health","plan":"Young Star Individual Gold"},
+  {"company":"Star Health","plan":"Young Star Floater Gold"},
+  {"company":"Star Health","plan":"Young Star Floater Silver"},
+  {"company":"Star Health","plan":"Young Star Individual Silver"},
+  {"company":"Star Health","plan":"Family Health Optima"},
+  {"company":"Star Health","plan":"Women Care"},
+  {"company":"Star Health","plan":"Health Assure"},
+
+  {"company":"ICICI Lombard","plan":"Elevate"},
+  {"company":"ICICI Lombard","plan":"Activate Booster Plan A"},
+
+  {"company":"HDFC ERGO","plan":"Medisure Super Top-up"},
+
+  {"company":"Aditya Birla Health","plan":"Activ One VYTL"},
+  {"company":"Aditya Birla Health","plan":"Activ One Max"},
+  {"company":"Aditya Birla Health","plan":"Activ One Max+"},
+  {"company":"Aditya Birla Health","plan":"Activ One VIP"},
+  {"company":"Aditya Birla Health","plan":"Activ One VIP+"},
+  {"company":"Aditya Birla Health","plan":"Activ Assure Diamond"},
+
+  {"company":"Tata AIG","plan":"Medicare Premier"},
+  {"company":"Tata AIG","plan":"Medicare Select"},
+
+  {"company":"SBI General","plan":"Arogya Sanjeevani"},
+  {"company":"SBI General","plan":"Arogya Top Up"},
+
+  {"company":"ManipalCigna","plan":"Sarvah Pratham Posp"},
+  {"company":"ManipalCigna","plan":"Sarvah Param Posp"},
+  {"company":"ManipalCigna","plan":"Sarvah Uttam Posp"},
+  {"company":"ManipalCigna","plan":"Lifetime Health"},
+
+  {"company":"IndusInd","plan":"Health Gain"},
+  {"company":"IndusInd","plan":"Health Infinity"},
+  {"company":"IndusInd","plan":"Health Infinity More Cover"},
+  {"company":"IndusInd","plan":"Health Infinity More Time"},
+  {"company":"IndusInd","plan":"Health Infinity More Global"},
+
+  {"company":"Universal Sompo","plan":"A Plus Health Insurance Gold"},
+  {"company":"Universal Sompo","plan":"A Plus Health Insurance Diamond"},
+  {"company":"Universal Sompo","plan":"A Plus Health Insurance Silver"},
+
+  {"company":"Chola MS","plan":"Flexi Health"},
+  {"company":"Chola MS","plan":"Flexi Health Supreme Plus"},
+
+  {"company":"Magma","plan":"One Health Support Plus"}
+]

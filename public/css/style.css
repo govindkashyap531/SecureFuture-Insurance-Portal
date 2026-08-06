@@ -89,7 +89,17 @@ max-width:800px;
 margin:0 auto 30px;
 }
 
-.btn{
+display:block;
+width:100%;
+max-width:280px;
+margin:10px auto;
+text-align:center;
+}display:block;
+width:100%;
+max-width:280px;
+margin:10px auto;
+text-align:center;
+}.btn{
 display:inline-block;
 padding:15px 35px;
 background:#fff;
@@ -372,4 +382,149 @@ text-decoration:underline;
 .whatsapp-btn:hover,
 .call-btn:hover{
     transform:scale(1.08);
+}
+/* ================= AI CHATBOT ================= */
+
+.chat-button{
+position:fixed;
+bottom:170px;
+right:25px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#0d6efd;
+color:#fff;
+font-size:30px;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+z-index:9999;
+}
+
+.chat-box{
+position:fixed;
+bottom:100px;
+right:25px;
+width:340px;
+height:500px;
+background:#fff;
+border-radius:15px;
+overflow:hidden;
+display:none;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+z-index:9999;
+}
+
+.chat-header{
+background:#0d6efd;
+color:#fff;
+padding:15px;
+font-size:18px;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.chat-messages{
+height:360px;
+overflow-y:auto;
+padding:15px;
+background:#f5f5f5;
+}
+
+.bot,
+.user{
+padding:10px 15px;
+border-radius:10px;
+margin-bottom:10px;
+max-width:85%;
+}
+
+.bot{
+background:#e3f2fd;
+}
+
+.user{
+background:#0d6efd;
+color:#fff;
+margin-left:auto;
+}
+
+.chat-input{
+display:flex;
+border-top:1px solid #ddd;
+}
+
+.chat-input input{
+flex:1;
+padding:12px;
+border:none;
+outline:none;
+font-size:15px;
+}
+
+.chat-input button{
+border:none;
+background:#0d6efd;
+color:#fff;
+padding:0 20px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:#fff;
+color:#0d6efd;
+text-decoration:none;
+font-weight:bold;
+border-radius:40px;
+margin:10px;
+}
+/* ===== Plans Page ===== */
+
+#plansList{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+margin-top:20px;
+}
+
+.plan-card{
+background:#fff;
+border-radius:12px;
+padding:20px;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+text-align:center;
+transition:.3s;
+}
+
+.plan-card:hover{
+transform:translateY(-5px);
+}
+
+.plan-card img{
+width:90px;
+height:90px;
+object-fit:contain;
+margin-bottom:15px;
+}
+
+.plan-card h3{
+margin:10px 0;
+color:#0d6efd;
+}
+
+.plan-card p{
+margin-bottom:15px;
+}
+
+.plan-card .btn{
+display:block;
+margin:8px auto;
+width:220px;
 }

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SecureFuture Insurance</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="container">
+
+<div class="logo">
+🛡 SecureFuture
+</div>
+
+<nav>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+
+<li><a href="#plans">Plans</a></li>
+
+<li><a href="#about">About</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+<li><a href="login.html">Login</a></li>
+
+<li><a href="register.html" class="register-btn">Register</a></li>
+
+</ul>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Protect Your Family's Future</h1>
+
+<p>
+
+Compare Life Insurance, Health Insurance, Motor Insurance and Investment Plans from India's top companies.
+
+</p>
+
+ href="#plans" class="btn">
+
+Get Free Consultation
+
+<div class="hero-stats">
+    <div><strong>1000+</strong><br>Happy Customers</div>
+    <div><strong>98%</strong><br>Claim Support</div>
+    <div><strong>24×7</strong><br>Customer Assistance</div>
+</div>
+
+</a>
+
+</div>
+
+</section>
+
+<section id="plans">
+
+<div class="container">
+
+<h2>
+
+Our Insurance Plans
+
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>❤️ Life Insurance</h3>
+
+<p>
+
+Secure your family's future with affordable life insurance.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🏥 Health Insurance</h3>
+
+<p>
+
+Cashless treatment and complete medical coverage.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🚗 Motor Insurance</h3>
+
+<p>
+
+Protect your vehicle with comprehensive insurance.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>📈 Investment Plans</h3>
+
+<p>
+
+Save today and build wealth for tomorrow.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section id="companies">
+
+<div class="container">
+
+<h2>Top Insurance Companies</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>LIC</h3>
+<p>India's most trusted life insurance company.</p>
+</div>
+
+<div class="card">
+<h3>HDFC Life</h3>
+<p>Affordable term & health insurance plans.</p>
+</div>
+
+<div class="card">
+<h3>ICICI Prudential</h3>
+<p>Life insurance with investment benefits.</p>
+</div>
+
+<div class="card">
+<h3>SBI Life</h3>
+<p>Trusted protection and savings plans.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<div class="container">
+
+<h2>Why Choose SecureFuture?</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>✅ Trusted Advisors</h3>
+<p>Experienced insurance experts to guide you.</p>
+</div>
+
+<div class="card">
+<h3>💰 Lowest Premium</h3>
+<p>Compare multiple companies to find the best price.</p>
+</div>
+
+<div class="card">
+<h3>⚡ Fast Support</h3>
+<p>Quick response for policy and claim assistance.</p>
+</div>
+
+<div class="card">
+<h3>🔒 Safe & Secure</h3>
+<p>Your personal information is protected.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section id="reviews">
+
+<div class="container">
+
+<h2>What Our Customers Say</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>⭐⭐⭐⭐⭐</h3>
+<p>"Excellent service! I got the best life insurance plan."</p>
+<strong>- Rahul Sharma</strong>
+</div>
+
+<div class="card">
+<h3>⭐⭐⭐⭐⭐</h3>
+<p>"Very helpful advisor and quick claim support."</p>
+<strong>- Priya Verma</strong>
+</div>
+
+<div class="card">
+<h3>⭐⭐⭐⭐⭐</h3>
+<p>"Highly recommended for insurance services."</p>
+<strong>- Amit Kumar</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section id="faq">
+
+<div class="container">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>How can I buy a policy?</h3>
+<p>Fill out the consultation form and our advisor will contact you.</p>
+</div>
+
+<div class="card">
+<h3>Do you provide claim support?</h3>
+<p>Yes, we help customers throughout the claim process.</p>
+</div>
+
+<div class="card">
+<h3>Which insurance companies do you work with?</h3>
+<p>LIC, HDFC Life, SBI Life, ICICI Prudential and other leading insurers.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section id="calculator">
+  <div class="container">
+    <h2>Premium Calculator</h2>
+
+    <div class="card" style="max-width:500px;margin:auto;">
+      <input type="number" id="amount" placeholder="Enter Amount">
+
+<input type="number" id="age" placeholder="Your Age">
+
+<select id="plan">
+  <option value="life">Life Insurance</option>
+  <option value="health">Health Insurance</option>
+  <option value="motor">Motor Insurance</option>
+</select>
+      <button onclick="calculatePremium()" class="btn" style="margin-top:15px;">
+        Calculate Premium
+      </button>
+
+      <h3 id="result" style="margin-top:20px;"></h3>
+    </div>
+  </div>
+</section> 
+<section id="contact">
+
+<div class="container">
+
+<h2>Contact Us</h2>
+
+<form id="leadForm">
+
+<input type="text" placeholder="Full Name" required>
+
+<input type="email" placeholder="Email Address" required>
+
+<input type="tel" placeholder="Mobile Number" required>
+
+<select required>
+<option value="">Select Insurance</option>
+<option>Life Insurance</option>
+<option>Health Insurance</option>
+<option>Motor Insurance</option>
+<option>Investment Plan</option>
+</select>
+
+<textarea placeholder="Write your message..." rows="5"></textarea>
+
+<button type="submit">Get Free Consultation</button>
+
+</form>
+
+<p id="message"></p>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container">
+
+<h3>🛡 SecureFuture Insurance</h3>
+
+<p>
+Life • Health • Motor • Investment Insurance
+</p>
+
+<p>
+Email: govindkashyap531@gmail.com
+</p>
+
+<p>
+Phone: +91 6389788659
+</p>
+
+<p>
+© 2026 SecureFuture Insurance. All Rights Reserved.
+</p>
+
+</div>
+
+</footer>
+
+<div class="floating-buttons">
+
+<a href="https://wa.me/916389788659" class="whatsapp-btn" target="_blank">
+💬 WhatsApp
+</a>
+
+<a href="tel:+916389788659" class="call-btn">
+📞 Call Now
+</a>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
+

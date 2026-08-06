@@ -59,4 +59,44 @@ router.get("/all", async (req, res) => {
   }
 });
 
+// Update Lead
+router.put("/update/:id", async (req, res) => {
+  try {
+    const lead = await Lead.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+
+    res.json({
+      success: true,
+      message: "Lead Updated Successfully",
+      lead
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
+
+// Delete Lead
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    await Lead.findByIdAndDelete(req.params.id);
+
+    res.json({
+      success: true,
+      message: "Lead Deleted Successfully"
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+});
 module.exports = router;

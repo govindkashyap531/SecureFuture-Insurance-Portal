@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SecureFuture Admin Dashboard</title>
 
 <link rel="stylesheet" href="css/style.css">
 
 <style>
+
 body{
 font-family:Arial,sans-serif;
 background:#f4f7fb;
@@ -23,8 +26,13 @@ justify-content:space-between;
 align-items:center;
 }
 
+.navbar a{
+color:#fff;
+text-decoration:none;
+}
+
 .dashboard{
-padding:30px;
+padding:25px;
 }
 
 .cards{
@@ -48,15 +56,27 @@ color:#0d6efd;
 margin:0;
 }
 
+button{
+background:#0d6efd;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:5px;
+cursor:pointer;
+margin:5px;
+}
+
 table{
 width:100%;
 border-collapse:collapse;
 background:#fff;
+margin-top:15px;
 }
 
-table th,table td{
-padding:12px;
+table th,
+table td{
 border:1px solid #ddd;
+padding:12px;
 text-align:center;
 }
 
@@ -64,6 +84,15 @@ table th{
 background:#0d6efd;
 color:#fff;
 }
+
+input{
+width:100%;
+padding:10px;
+margin:15px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
 </style>
 
 </head>
@@ -71,8 +100,11 @@ color:#fff;
 <body>
 
 <div class="navbar">
+
 <h2>SecureFuture Admin</h2>
-<a href="index.html" style="color:white;text-decoration:none;">Home</a>
+
+<a href="index.html">Home</a>
+
 </div>
 
 <div class="dashboard">
@@ -98,12 +130,16 @@ color:#fff;
 
 <h2>Recent Leads</h2>
 
+<button onclick="exportTable()">
+📥 Export CSV
+</button>
+
 <input
 id="search"
 type="text"
 placeholder="Search by Name or Mobile..."
-onkeyup="searchLead()"
-style="width:100%;padding:10px;margin:15px 0;border:1px solid #ccc;border-radius:5px;">
+onkeyup="searchLead()">
+
 <table>
 
 <thead>
@@ -115,6 +151,7 @@ style="width:100%;padding:10px;margin:15px 0;border:1px solid #ccc;border-radius
 <th>Email</th>
 <th>Insurance</th>
 <th>Date</th>
+<th>Action</th>
 
 </tr>
 
@@ -130,10 +167,17 @@ style="width:100%;padding:10px;margin:15px 0;border:1px solid #ccc;border-radius
 
 <script>
 
-fetch("/admin/stats")
 .then(res=>res.json())
 .then(data=>{
+const token = localStorage.getItem("adminToken");
 
+fetch("/admin/stats",{
+headers:{
+"Authorization":"Bearer "+token
+}
+})
+.then(res=>res.json())
+.then(data=>{
 document.getElementById("users").innerHTML=data.users;
 document.getElementById("policies").innerHTML=data.policies;
 document.getElementById("leads").innerHTML=data.leads;
@@ -155,13 +199,24 @@ html+=`
 <td>${lead.email}</td>
 <td>${lead.insuranceType}</td>
 <td>${new Date(lead.createdAt).toLocaleDateString()}</td>
+
+<td>
+
+
+<button onclick="deleteLead('${lead._id}')">🗑️</button><button onclick="editLead('${lead._id}')">✏️</button>
+
+<button onclick="deleteLead('${lead._id}')">🗑️</button>
+
+<button onclick="openWhatsApp('${lead.mobile}')">💬</button>
+</td>
+
 </tr>
+
 `;
 
 });
 
 document.getElementById("leadTable").innerHTML=html;
-
 
 });
 
@@ -183,8 +238,88 @@ row.style.display="none";
 
 }
 
+function deleteLead(id){
+
+if(confirm("Delete this lead?")){
+
+fetch("/lead/delete/"+id,{
+method:"DELETE"
+})
+.then(res=>res.json())
+.then(data=>{
+alert(data.message);
+location.reload();
+});
+
+}
+
+}
+
+function editLead(id){
+
+let name=prompt("Enter New Name");
+
+if(!name) return;
+
+fetch("/lead/update/"+id,{
+method:"PUT",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({name:name})
+})
+.then(res=>res.json())
+.then(data=>{
+alert(data.message);
+location.reload();
+});
+
+}
+
+function exportTable(){
+
+let csv="Name,Mobile,Email,Insurance,Date\n";
+
+let rows=document.querySelectorAll("#leadTable tr");
+
+rows.forEach(row=>{
+
+let cols=row.querySelectorAll("td");
+
+if(cols.length>=5){
+
+csv+=
+cols[0].innerText+","+
+cols[1].innerText+","+
+cols[2].innerText+","+
+cols[3].innerText+","+
+cols[4].innerText+"\n";
+
+}
+
+});
+
+let blob=new Blob([csv],{type:"text/csv"});
+
+let link=document.createElement("a");
+
+link.href=URL.createObjectURL(blob);
+
+link.download="SecureFuture_Leads.csv";
+
+link.click();
+
+}
+
+function openWhatsApp(mobile){
+
+window.open(
+"https://wa.me/91"+mobile,
+"_blank"
+);
+
+}
 </script>
 
 </body>
 </html>
-ĺ

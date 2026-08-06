@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Insurance Advisor</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:650px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+h2{
+text-align:center;
+color:#0d6efd;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#0d6efd;
+color:#fff;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+#result{
+margin-top:20px;
+padding:15px;
+background:#eef7ff;
+border-radius:8px;
+display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🤖 AI Insurance Advisor</h2>
+
+<input type="number" id="age" placeholder="Enter Age">
+
+<input type="number" id="income" placeholder="Monthly Income">
+
+<select id="goal">
+<option value="">Select Goal</option>
+<option value="Life">Life Insurance</option>
+<option value="Health">Health Insurance</option>
+<option value="Motor">Motor Insurance</option>
+<option value="Investment">Investment Plan</option>
+</select>
+
+<button onclick="recommendPlan()">Get Recommendation</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+function recommendPlan(){
+
+const age=Number(document.getElementById("age").value);
+const income=Number(document.getElementById("income").value);
+const goal=document.getElementById("goal").value;
+
+let plan="";
+let cover="";
+
+if(goal==="Life"){
+plan="Secure Life Plan";
+cover="₹50 Lakh";
+}
+else if(goal==="Health"){
+plan="Family Health Plan";
+cover="₹10 Lakh";
+}
+else if(goal==="Motor"){
+plan="Comprehensive Motor Plan";
+cover="Cashless Garage Network";
+}
+else if(goal==="Investment"){
+plan="Wealth Builder Plan";
+cover="Long-term Investment + Insurance";
+}
+else{
+alert("Please select a goal.");
+return;
+}
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").innerHTML=`
+<h3>Recommended Plan</h3>
+<p><strong>Age:</strong> ${age}</p>
+<p><strong>Monthly Income:</strong> ₹${income}</p>
+<p><strong>Recommended Plan:</strong> ${plan}</p>
+<p><strong>Suggested Coverage:</strong> ${cover}</p>
+
+<a href="apply.html">
+<button style="margin-top:15px;">Apply Now</button>
+</a>
+`;
+}
+</script>
+
+</body>
+</html>

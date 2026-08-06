@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login - SecureFuture</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:white;
+padding:30px;
+width:300px;
+border-radius:10px;
+box-shadow:0 5px 15px #ccc;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>🔐 Admin Login</h2>
+
+<input id="email" type="email" placeholder="Admin Email">
+
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+
+</div>
+
+
+<script>
+
+function login(){
+
+fetch("/adminAuth/login",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+email:document.getElementById("email").value,
+
+password:document.getElementById("password").value
+
+})
+
+})
+
+.then(res=>res.json())
+
+.then(data=>{
+
+if(data.token){
+
+localStorage.setItem("adminToken",data.token);
+
+window.location="admin.html";
+
+}
+
+else{
+
+document.getElementById("msg").innerHTML=data.message;
+
+}
+
+})
+
+.catch(()=>{
+
+document.getElementById("msg").innerHTML="Server Error";
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
